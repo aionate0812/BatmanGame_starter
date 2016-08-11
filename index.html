@@ -1,0 +1,124 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Batman!</title>
+
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.3.0/styles/monokai.min.css">
+        <link rel="stylesheet" href="styles/main.css">
+    </head>
+    <body>
+        
+        <h1>Batman Canvas Game</h1>
+
+        <canvas width="700" height="500" class="canvas"></canvas>
+
+        <section>
+            <h1>How to play</h1>
+            <ul>
+                <li><strong>Left arrow</strong>: start running!</li> 
+                <li><strong>Up arrow</strong>: jump!</li> 
+                <li><strong>Bottom arrow</strong>: stop!</li> 
+            </ul>
+        </section>
+
+        <section>
+            <h1>Your Task</h1>
+            <p>Implement the following functions that will allow your <strong>starter code</strong> version of this game work properly as well</p>
+
+            <pre>
+                <code>
+/*
+    @function moveBgLeft
+    @param {number} x
+    @returns {number}
+    @desc return the input param minus 10 (or some other value that you like)
+*/
+function moveBgLeft() {}
+                </code>
+            </pre>
+
+            <pre>
+                <code>
+/*
+    @function keyUpHandler
+    @param {number} keyCode
+    @param {boolean} upArrowPressed
+    @param {boolean} rightArrowPressed
+    @param {boolean} downArrowPressed
+    @param {boolean} leftArrowPressed
+    @param {boolean} shiftKeyPressed 
+    @returns { object }
+    @desc returns all the above params but flips a switch setting val to false
+*/
+function keyUpHandler( keyCode = 0, upArrowPressed = false, rightArrowPressed = false, downArrowPressed = false, leftArrowPressed = false, shiftKeyPressed = false ) {
+    // you need a bunch of if statements here...
+
+
+    return {
+        upArrowPressed,
+        rightArrowPressed,
+        downArrowPressed,
+        leftArrowPressed,
+        shiftKeyPressed
+    };
+}
+                </code>
+            </pre>
+
+            <pre>
+                <code>
+/*
+    @function keyDownHandler
+    @param {number} keyCode
+    @param {boolean} upArrowPressed
+    @param {boolean} rightArrowPressed
+    @param {boolean} downArrowPressed
+    @param {boolean} leftArrowPressed
+    @param {boolean} shiftKeyPressed 
+    @returns { object }
+    @desc returns all the above params but flips a switch setting val to true 
+*/
+function keyUpHandler( keyCode = 0, upArrowPressed = false, rightArrowPressed = false, downArrowPressed = false, leftArrowPressed = false, shiftKeyPressed = false ) {
+    // you need a bunch of if statements here...
+
+
+    return {
+        upArrowPressed,
+        rightArrowPressed,
+        downArrowPressed,
+        leftArrowPressed,
+        shiftKeyPressed
+    };
+}
+                </code>
+            </pre>
+
+            <pre>
+                <code>
+/*
+    @function shouldJumpNow
+    @param {number} y
+    @returns {number}
+    @desc subtracts a value from y to simulate jump
+*/
+function shouldJumpNow() {}
+                </code>
+            </pre>
+        </section>
+
+
+        <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.3.0/highlight.min.js"></script>
+
+        <script src="javascript/Utils.js"></script>
+        <script src="javascript/GameLoop.js"></script>
+        <script src="javascript/Game.js"></script>
+        <script src="javascript/app.js"></script>
+        <script src="javascript/implementation.js"></script>
+        <script>
+            const all = document.querySelectorAll('pre code');
+            Array.from( all ).forEach((el) => {
+                hljs.highlightBlock( el );
+            });
+        </script>
+    </body>
+</html>

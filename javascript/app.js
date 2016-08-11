@@ -2,7 +2,7 @@
 
     // kick start
     Promise.all([
-        Utils.loadImage( 'assets/gotham.jpg', 'background' ),
+        Utils.loadImage( 'assets/gotham8.png', 'background' ),
         Utils.loadImage( 'assets/batman_sprite_sheet.png', 'sprite', BatmanSprite() ),
     ]).then(( imgs ) => {
         const g = new Game(

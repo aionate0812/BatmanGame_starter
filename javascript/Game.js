@@ -8,12 +8,12 @@ const Game = (function() {
     const CONSTANTS = {
         background: {
             x: 0,
-            y: 0,
-            heightOffs: 300,
+            y: 60,
+            heightOffs: 0,
         },
         sprite: {
             x: 70,
-            y: 340,
+            y: 190,
             startSpriteIdx: [ 0 ],
             idx: 0,
         }
@@ -28,8 +28,11 @@ const Game = (function() {
         const { x, y, heightOffs, startMoving } = props.data.background;
 
 
-        ctx.drawImage( data.background.img, x, y, canvas.width, canvas.height+heightOffs );
-        ctx.drawImage( data.background.img, x+canvas.width, y, canvas.width, canvas.height+heightOffs );
+        ctx.fillStyle = '#D9E11A';
+        //ctx.fillStyle = 'gray';
+        ctx.fillRect( 0, 0, canvas.width, canvas.height );
+        ctx.drawImage( data.background.img, x, y, canvas.width, data.background.img.height+heightOffs );
+        ctx.drawImage( data.background.img, x+canvas.width, y, canvas.width, data.background.img.height+heightOffs );
 
         if ( x <= -1*canvas.width ) {
             props.data.background.x = 0;
@@ -45,6 +48,7 @@ const Game = (function() {
         const _idx = props.idx;
         let idx = spriteIdxs[ _idx ];
 
+
         ctx.clearRect( x, y, current[idx].width, current[idx].height );
     }
 
@@ -55,6 +59,7 @@ const Game = (function() {
         const spriteIdxs = props.allowedSprites;
         let _idx = props.idx;
         let idx = spriteIdxs[ _idx ];
+
 
         ctx.drawImage(
             data.sprite.img,
@@ -171,7 +176,7 @@ const Game = (function() {
                 }
            }
 
-           if ( downArrowPressed ) {
+           if ( downArrowPressed && !this.isJumping ) {
                 this.idx = 0;
                 this.allowedSprites = [0];
 
@@ -209,21 +214,28 @@ const Game = (function() {
 
         initEvents() {
             window.addEventListener('keydown', ( e ) => {
-                if ( !keyDownHandler ) {
+                if ( typeof keyDownHandler !== "function" ) {
                     return;
                 }
 
                 this.keys = keyDownHandler( e.which );
 
+                e.preventDefault();
             });
 
             window.addEventListener('keyup', ( e ) => {
-                if ( !keyUpHandler ) {
+                if ( typeof keyUpHandler !== "function" ) {
                     return;
                 }
 
-                this.keys = keyUpHandler( e.which );
+                this.keys = keyUpHandler(
+                    e.which,
+                    ...Object.keys(this.keys || []).map( key => {
+                        return this.keys[ key ]
+                    })
+                );
 
+                e.preventDefault();
             });
         }
     } // Main
